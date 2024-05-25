@@ -16,7 +16,6 @@ export const usersEndpoint = app
     const { id } = c.req.param();
 
     const result = await getUserUsecase(c.var.repo)({ id });
-    console.debug(result);
     if (Result.isOk(result)) {
       return c.json({ ok: true, data: Result.unwrap(result) } as const);
     }
