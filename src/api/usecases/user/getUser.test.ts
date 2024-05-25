@@ -3,6 +3,10 @@ import { Result } from '@mikuroxina/mini-fn';
 import { getUserUsecase } from './getUser';
 
 describe('getUserUsecase', () => {
+  afterEach(() => {
+    vi.resetAllMocks();
+  });
+
   const mockedUsecase = (getFn: UserRepository.Get) =>
     getUserUsecase({
       add: vi.fn(),

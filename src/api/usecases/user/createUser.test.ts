@@ -3,6 +3,10 @@ import { createUserUsecase } from './createUser';
 import { Result } from '@mikuroxina/mini-fn';
 
 describe('createUserUsecase', () => {
+  afterEach(() => {
+    vi.resetAllMocks();
+  });
+
   const expected = User.as({
     id: User.Id.as('some-user-id'),
     name: 'user-name',
