@@ -10,4 +10,4 @@ export const resPromiseToPromiseRes = <E, T>(
     : PromiseFn.pure(resPromise);
 
 export const assertOneOrMore = <T>(values: T[]) =>
-  values.length >= 1 ? Option.some(values[0]) : Option.none();
+  values[0] ? Option.some(values[0]) : Option.none();
