@@ -17,7 +17,10 @@ export const usersEndpoint = app
 
     const result = await getUserUsecase(c.var.repo)({ id });
     if (Result.isOk(result)) {
-      return c.json({ ok: true, data: Result.unwrap(result) } as const);
+      return c.json({
+        ok: true,
+        data: { user: Result.unwrap(result) },
+      } as const);
     }
 
     const err = Result.unwrapErr(result);
