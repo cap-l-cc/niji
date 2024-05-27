@@ -23,6 +23,7 @@ describe('getUserUsecase', () => {
     const actual = await mockedUsecase(getFn)({ id: expected.id });
 
     expect(getFn).toBeCalledTimes(1);
+    expect(getFn).toBeCalledWith({ id: expected.id });
     expect(Result.isOk(actual)).toBeTruthy();
   });
 

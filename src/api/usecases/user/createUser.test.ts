@@ -23,6 +23,7 @@ describe('createUserUsecase', () => {
     const actual = await mockedUsecase(addFn)({ ...expected });
 
     expect(addFn).toBeCalledTimes(1);
+    expect(addFn).toBeCalledWith({ newUser: expected });
     expect(Result.isOk(actual)).toBeTruthy();
   });
 
