@@ -11,11 +11,9 @@ const expectedUser = User.as({
   googleAccountId: 'test-google-account-id',
 });
 
-const fetchUserEp = async (userId: string, method: 'GET' | 'POST') =>
-  usersEndpoint.request(`/${userId}`, { method }, env);
-
 describe('GET /:userId', () => {
-  const wrappedGetUser = async (userId: string) => fetchUserEp(userId, 'GET');
+  const wrappedGetUser = async (userId: string) =>
+    usersEndpoint.request(`/${userId}`, { method: 'GET' }, env);
 
   it('returns 200 when get registered user', async () => {
     await drizzle(env.DB).insert(usersTableSchema).values({
