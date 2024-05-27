@@ -14,7 +14,7 @@ const expectedUser = User.as({
 const fetchUserEp = async (userId: string, method: 'GET' | 'POST') =>
   usersEndpoint.request(`/${userId}`, { method }, env);
 
-describe('GET /:userId', () => {
+describe('GET /users/:userId', () => {
   const wrappedGetUser = async (userId: string) => fetchUserEp(userId, 'GET');
 
   it('returns 200 when get registered user', async () => {
