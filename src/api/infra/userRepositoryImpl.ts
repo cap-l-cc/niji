@@ -53,12 +53,12 @@ export const userRepositoryImpl = (db: DrizzleD1Database): UserRepository => ({
         .insert(usersTableSchema)
         .values({ userId, userName, googleAccountId, userProfileIconKey })
         .returning()
-        .then(Result.ok)
+        // biome-ignore lint/style/noNonNullAssertion: users must have one element at least
+        .then((users) => Result.ok(users[0]!))
         .catch((err: DrizzleError) => Result.err(new DatabaseError(err)));
 
     return Cat.cat(newUser)
       .feed(fetcher)
-      .feed(PromiseFn.map(Result.map((users) => users[0])))
       .feed(
         PromiseFn.map(
           Result.map(
