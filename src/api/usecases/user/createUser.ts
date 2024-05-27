@@ -2,7 +2,7 @@ import { resPromiseToPromiseRes } from '@/libs/fn';
 import { User, type UserRepository } from '@/domain/user';
 import { Cat, Result } from '@mikuroxina/mini-fn';
 
-const wrapDomainToUsecaseParam = Result.map((newUser: User) => ({ newUser }));
+const convertToRepoParam = Result.map((newUser: User) => ({ newUser }));
 
 export namespace CreateUserUsecase {
   export type Param = {
@@ -34,6 +34,6 @@ export const createUserUsecase =
           }),
         ),
       )
-      .feed(wrapDomainToUsecaseParam)
+      .feed(convertToRepoParam)
       .feed(Result.map(repo.add))
       .feed(resPromiseToPromiseRes).value;
